@@ -4,6 +4,12 @@ class CartaBeta < Formula
   url "https://github.com/CARTAvis/carta-backend.git", tag: "v2.0.0-dev.21.03.05"
   license "GPL-3.0-only"
 
+  bottle do
+    root_url "https://github.com/CARTAvis/homebrew-tap/releases/download/carta-beta-21.03.05"
+    sha256 cellar: :any,                 catalina:     "03367bb2cc5ef2f46bc16b11ab9980f8046ce409a0cd61ee7b50a07ede7d4d55"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "b2ad9476efef824dc86e52fc52264889deefd1f3923aec97cb66fd378a68cf42"
+  end
+
   depends_on "cmake" => :build
   depends_on "cartavis/tap/carta-casacore"
   depends_on "cartavis/tap/zfp"
