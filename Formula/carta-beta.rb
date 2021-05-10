@@ -46,6 +46,5 @@ class CartaBeta < Formula
 
   test do
     assert_match "2.0.0-beta.0", shell_output("#{bin}/carta_backend --version")
-    assert_true Dir.exist?(share/"carta/frontend")
   end
 end
