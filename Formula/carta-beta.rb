@@ -1,14 +1,8 @@
 class CartaBeta < Formula
   desc "Carta-backend and carta-frontend components of CARTA"
   homepage "https://cartavis.github.io/"
-  url "https://github.com/CARTAvis/carta-backend.git", tag: "v2.0.0-dev.21.03.05"
+  url "https://github.com/CARTAvis/carta-backend.git", tag: "v2.0.0-beta.0"
   license "GPL-3.0-only"
-
-  bottle do
-    root_url "https://github.com/CARTAvis/homebrew-tap/releases/download/carta-beta-21.03.05"
-    sha256 cellar: :any,                 catalina:     "03367bb2cc5ef2f46bc16b11ab9980f8046ce409a0cd61ee7b50a07ede7d4d55"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "b2ad9476efef824dc86e52fc52264889deefd1f3923aec97cb66fd378a68cf42"
-  end
 
   depends_on "cmake" => :build
   depends_on "cartavis/tap/carta-casacore"
@@ -21,11 +15,12 @@ class CartaBeta < Formula
   depends_on "protobuf"
   depends_on "pugixml"
   depends_on "tbb"
+  depends_on "wcslib"
   depends_on "zstd"
 
   resource "frontend" do
-    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-2.0.0-dev.21.3.05b.tgz"
-    sha256 "6cfc3a63bb917d38c41a946986cd19bc14bc5b8ece437e2e2877842b1879d55a"
+    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-2.0.0-beta.0.tgz"
+    sha256 "14d252e27eb2311fd44fbe17116eabe0faa37248ea5ba8e4c72183f882ff6d66"
   end
 
   def install
@@ -49,7 +44,7 @@ class CartaBeta < Formula
   end
 
   test do
-    assert_match "2.0.0-dev.21.03.04", shell_output("#{bin}/carta_backend --version")
+    assert_match "2.0.0-beta.0", shell_output("#{bin}/carta_backend --version")
     assert_true Dir.exist?(share/"carta/frontend")
   end
 end
