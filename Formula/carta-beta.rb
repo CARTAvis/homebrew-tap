@@ -1,7 +1,7 @@
 class CartaBeta < Formula
   desc "Carta-backend and carta-frontend components of CARTA"
   homepage "https://cartavis.github.io/"
-  url "https://github.com/CARTAvis/carta-backend.git", tag: "v2.0.0-beta.1"
+  url "https://github.com/CARTAvis/carta-backend.git", tag: "v2.0.0-beta.0"
   license "GPL-3.0-only"
 
   depends_on "cmake" => :build
