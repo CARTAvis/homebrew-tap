@@ -36,7 +36,6 @@ class CartaBeta < Formula
                             "-DCMAKE_CXX_STANDARD_LIBRARIES=-L#{lib}", *std_cmake_args
       system "make", "install"
     end
-
     # Grabing the pre-built carta-frontend from the npm repository.
     resource("frontend").stage do
       mkdir_p "#{share}/carta/frontend"
