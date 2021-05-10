@@ -4,6 +4,13 @@ class CartaCasacore < Formula
   url "https://github.com/CARTAvis/carta-casacore.git", tag: "3.4.0+5.8.0+2021.2.4"
   license "GPL-2.0-only"
 
+  bottle do
+    root_url "https://github.com/CARTAvis/homebrew-tap/releases/download/carta-casacore-2021.2.4"
+    rebuild 1
+    sha256 catalina:     "c4ba03bba63d224b6c7d6c3efdfdc0015a81c4fff3c8e313835f8612cdde9947"
+    sha256 x86_64_linux: "80bff7489a2f7688e601f83a1f25ae79550801faf1e6a4ee89eb057ac5ad0a4c"
+  end
+
   depends_on "cmake" => :build
   depends_on "cfitsio"
   depends_on "fftw"
