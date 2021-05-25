@@ -20,6 +20,10 @@ class CartaBeta < Formula
   depends_on "wcslib"
   depends_on "zstd"
 
+  if MacOS.version <= :mojave
+    depends_on "boost"
+  end
+
   resource "frontend" do
     url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-2.0.0-beta.0.tgz"
     sha256 "14d252e27eb2311fd44fbe17116eabe0faa37248ea5ba8e4c72183f882ff6d66"
