@@ -4,6 +4,12 @@ class CartaBeta < Formula
   url "https://github.com/CARTAvis/carta-backend.git", tag: "v2.0.0-beta.0"
   license "GPL-3.0-only"
 
+  bottle do
+    sha256 cellar: :any, big_sur: "df1fca59c9840f521cdf51a11afc3bedd41ce50fd5b3b87c233a9a30c83d002b"
+    sha256 cellar: :any, catalina: "989c5c5d0a12f5ec7a016bc07bfc364bd77c6b7d80371c52c9de17a211c8f03b"
+    sha256 cellar: :any, high_sierra: "a91adf574df2fad98852c3758c17ce1dfc26557e6240bca3b16ba189bb2eb957"
+  end
+
   depends_on "cmake" => :build
   depends_on "boost" if MacOS.version <= :mojave
   depends_on "cartavis/tap/carta-casacore"
