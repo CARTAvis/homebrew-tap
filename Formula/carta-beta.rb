@@ -24,9 +24,10 @@ class CartaBeta < Formula
     sha256 "14d252e27eb2311fd44fbe17116eabe0faa37248ea5ba8e4c72183f882ff6d66"
   end
 
-  args << "-DUseBoostFilesystem=True" if MacOS.version <= :mojave
-
   def install
+
+    args << "-DUseBoostFilesystem=True" if MacOS.version <= :mojave
+
     # Building the carta-backend
     system "git", "submodule", "update", "--recursive", "--init"
     ENV["OPENSSL_ROOT_DIR"] = "$(brew --prefix openssl)"
