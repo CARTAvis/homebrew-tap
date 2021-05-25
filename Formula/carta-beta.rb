@@ -25,9 +25,7 @@ class CartaBeta < Formula
   end
 
   def install
-
     args << "-DUseBoostFilesystem=True" if MacOS.version <= :mojave
-
     # Building the carta-backend
     system "git", "submodule", "update", "--recursive", "--init"
     ENV["OPENSSL_ROOT_DIR"] = "$(brew --prefix openssl)"
