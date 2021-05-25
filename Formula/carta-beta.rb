@@ -25,16 +25,19 @@ class CartaBeta < Formula
   end
 
   def install
-    args << "-DUseBoostFilesystem=True" if MacOS.version <= :mojave
     # Building the carta-backend
     system "git", "submodule", "update", "--recursive", "--init"
     ENV["OPENSSL_ROOT_DIR"] = "$(brew --prefix openssl)"
     path = HOMEBREW_PREFIX/"Cellar/carta-casacore/2021.2.4/include"
+    args = [
+      "-DCMAKE_PREFIX_PATH=#{lib}",
+      "-DCMAKE_INCLUDE_PATH=#{include}",
+      "-DCMAKE_CXX_FLAGS=-I#{path}/casacode -I#{path}/casacore",
+      "-DCMAKE_CXX_STANDARD_LIBRARIES=-L#{lib}",
+    ]
+    args << "-DUseBoostFilesystem=True" if MacOS.version <= :mojave
     mkdir "build-backend" do
-      system "cmake", "..", "-DCMAKE_PREFIX_PATH=#{lib}",
-                            "-DCMAKE_INCLUDE_PATH=#{include}",
-                            "-DCMAKE_CXX_FLAGS=-I#{path}/casacode -I#{path}/casacore",
-                            "-DCMAKE_CXX_STANDARD_LIBRARIES=-L#{lib}", *std_cmake_args, *args
+      system "cmake", "..", *args, *std_cmake_args
       system "make", "install"
     end
     # Grabing the pre-built carta-frontend from the npm repository.
