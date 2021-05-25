@@ -16,14 +16,14 @@ class CartaBeta < Formula
   depends_on "pkg-config"
   depends_on "protobuf"
   depends_on "pugixml"
-  on_linux do
-    depends_on "tbb"
-  end
+  depends_on "wcslib"
+  depends_on "zstd"
   on_macos do
     depends_on "tbb@2020"
   end
-  depends_on "wcslib"
-  depends_on "zstd"
+  on_linux do
+    depends_on "tbb"
+  end
 
   resource "frontend" do
     url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-2.0.0-beta.0.tgz"
