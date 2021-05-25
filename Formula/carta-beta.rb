@@ -16,7 +16,7 @@ class CartaBeta < Formula
   depends_on "pkg-config"
   depends_on "protobuf"
   depends_on "pugixml"
-  depends_on "tbb"
+  depends_on "tbb@2020"
   depends_on "wcslib"
   depends_on "zstd"
 
