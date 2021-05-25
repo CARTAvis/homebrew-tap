@@ -3,9 +3,9 @@ class CartaBeta < Formula
   homepage "https://cartavis.github.io/"
   url "https://github.com/CARTAvis/carta-backend.git", tag: "v2.0.0-beta.0"
   license "GPL-3.0-only"
-  
-  depends_on "boost"
+
   depends_on "cmake" => :build
+  depends_on "boost"
   depends_on "cartavis/tap/carta-casacore"
   depends_on "cartavis/tap/zfp"
   depends_on "curl"
