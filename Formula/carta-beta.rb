@@ -5,7 +5,7 @@ class CartaBeta < Formula
   license "GPL-3.0-only"
 
   depends_on "cmake" => :build
-  depends_on "boost"
+  depends_on "boost" if MacOS.version <= :mojave
   depends_on "cartavis/tap/carta-casacore"
   depends_on "cartavis/tap/zfp"
   depends_on "curl"
@@ -19,10 +19,6 @@ class CartaBeta < Formula
   depends_on "tbb@2020"
   depends_on "wcslib"
   depends_on "zstd"
-
-  if MacOS.version <= :mojave
-    depends_on "boost"
-  end
 
   resource "frontend" do
     url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-2.0.0-beta.0.tgz"
