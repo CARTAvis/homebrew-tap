@@ -9,6 +9,7 @@ class CartaBeta < Formula
     rebuild 1
     sha256 cellar: :any, big_sur: "df1fca59c9840f521cdf51a11afc3bedd41ce50fd5b3b87c233a9a30c83d002b"
     sha256 cellar: :any, catalina: "989c5c5d0a12f5ec7a016bc07bfc364bd77c6b7d80371c52c9de17a211c8f03b"
+    sha256 cellar: :any, mojave: "6e4c7978d59de85141da6b0469f558db46d3a657e9298c7ad0817bc6d8bc2377"
     sha256 cellar: :any, high_sierra: "a91adf574df2fad98852c3758c17ce1dfc26557e6240bca3b16ba189bb2eb957"
   end
 
