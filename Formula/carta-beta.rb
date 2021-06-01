@@ -67,6 +67,7 @@ class CartaBeta < Formula
     s = <<-EOS.undent
       CARTA officially supports only the latest two MacOS versions; Catalina 10.15 and Big Sur 11.0. 
       It may still work on older versions, but is untested by the CARTA team."
+    EOS
     s += "You are running the unsupported MacOS #{version} version. " if MacOS.version < :catalina
     s
   end
