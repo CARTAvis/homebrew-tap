@@ -7,6 +7,7 @@ class CartaBeta < Formula
   bottle do
     root_url "https://github.com/CARTAvis/homebrew-tap/releases/download/carta-beta-2.0.0-beta.0"
     rebuild 1
+    sha256 cellar: :any, arm64_big_sur: "78e836fba8ed8e94e2105558f51e631bcb7e63379135bfc11f318a41a34cc69e"
     sha256 cellar: :any, big_sur: "df1fca59c9840f521cdf51a11afc3bedd41ce50fd5b3b87c233a9a30c83d002b"
     sha256 cellar: :any, catalina: "989c5c5d0a12f5ec7a016bc07bfc364bd77c6b7d80371c52c9de17a211c8f03b"
     sha256 cellar: :any, mojave: "6e4c7978d59de85141da6b0469f558db46d3a657e9298c7ad0817bc6d8bc2377"
@@ -60,6 +61,14 @@ class CartaBeta < Formula
       mkdir_p "#{share}/carta/frontend"
       cp_r "build/.", share/"carta/frontend"
     end
+  end
+
+  def caveats
+    s = <<-EOS.undent
+      CARTA officially supports only the latest two MacOS versions; Catalina 10.15 and Big Sur 11.0. 
+      It may still work on older versions, but is untested by the CARTA team."
+    s += "You are running the unsupported MacOS #{version} version. " if MacOS.version < :catalina
+    s
   end
 
   test do

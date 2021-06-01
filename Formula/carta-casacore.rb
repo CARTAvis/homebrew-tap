@@ -7,6 +7,7 @@ class CartaCasacore < Formula
   bottle do
     root_url "https://github.com/CARTAvis/homebrew-tap/releases/download/carta-casacore-2021.2.4"
     rebuild 1
+    sha256 arm64_big_sur: "504c813dea1d9ae7924fb00f51d4e664275cf7fbe7c50eeac30233e6055f2837"
     sha256 high_sierra: "ab2ef5ce173c00b6ee8b7e586d2cc243a44f1a333b3cd47010a7466952394bc4"
     sha256 catalina:     "c4ba03bba63d224b6c7d6c3efdfdc0015a81c4fff3c8e313835f8612cdde9947"
     sha256 x86_64_linux: "80bff7489a2f7688e601f83a1f25ae79550801faf1e6a4ee89eb057ac5ad0a4c"
