@@ -64,13 +64,15 @@ class CartaBeta < Formula
   end
 
   def caveats
-    s = <<-EOS
-      CARTA officially supports only the latest two MacOS versions; Catalina 10.15 and Big Sur 11.0. 
-      It may still work on older versions, but is untested by the CARTA team."
-    EOS
-    s += "You are running the unsupported MacOS #{version} version. " if MacOS.version < :catalina
-    s
-  end
+    if MacOS.version <= :mojave
+      s = <<~EOS     
+      CARTA officially supports the latest two MacOS versions; Catalina 10.15 and Big Sur 11.0.
+      You are running MacOS #{MacOS.version}.
+      CARTA may still work on MacOS #{MacOS.version}, but it is untested by the CARTA team.
+      EOS
+      s
+    end
+  end    
 
   test do
     assert_match "2.0.0-beta.0", shell_output("#{bin}/carta_backend --version")
