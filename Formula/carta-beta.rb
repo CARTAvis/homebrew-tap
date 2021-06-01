@@ -64,7 +64,7 @@ class CartaBeta < Formula
   end
 
   def caveats
-    s = <<-EOS.undent
+    s = <<-EOS
       CARTA officially supports only the latest two MacOS versions; Catalina 10.15 and Big Sur 11.0. 
       It may still work on older versions, but is untested by the CARTA team."
     EOS
