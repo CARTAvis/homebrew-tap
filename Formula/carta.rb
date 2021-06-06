@@ -33,6 +33,8 @@ class Carta < Formula
     depends_on "tbb"
   end
 
+  conflicts_with "carta-beta", :because => "they both share the same executable name; 'carta'."
+
   resource "frontend" do
     url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-2.0.0.tgz"
     sha256 "c347dbd33466cd2f73a4f55e5b68a70573a82e5f0b7c0b1a10f1da91aeaeee21"
