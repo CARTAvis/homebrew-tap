@@ -6,10 +6,10 @@ class Carta < Formula
 
   bottle do
     root_url "https://github.com/CARTAvis/homebrew-tap/releases/download/carta-2.0.0"
-    sha256 cellar: :any, arm64_big_sur: "037c03743e1b52b3092d3ab60dc8df99fe6d52006b7bba1d273e9d592dcc7846"
-    sha256 cellar: :any, big_sur: "e474e68ef64e19e0be4424eda37ee26f513d9ff0038b3c8d175176616c10d7de"
-    sha256 cellar: :any, catalina: "974848a02fa8c823c87ce682b6641f23a6e74cff73f4df6ebd9f13aaab517598"
-    sha256 cellar: :any, mojave: "c46708735758aa08e72e4203620f7c64b530c08f8b25b45d343c90888ca62254"
+    rebuild 1
+    sha256 cellar: :any, arm64_big_sur: "b5be18035c2a223ff4c91d6fedf9cd8d444b020db878f46173d27a2b0f585355"
+    sha256 cellar: :any, big_sur: "2decb9370c5d386f3b0a8ed86f82957e29918f55a6b0d1d3b43ca155d23bdeca"
+    sha256 cellar: :any, catalina: "b935c61bdd27d64d249beb1f5b5639e7724578490bcbffb342a06641f9165ed2"
   end
 
   depends_on "cmake" => :build
