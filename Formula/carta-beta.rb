@@ -1,18 +1,8 @@
 class CartaBeta < Formula
   desc "Carta-backend and carta-frontend components of CARTA"
   homepage "https://cartavis.github.io/"
-  url "https://github.com/CARTAvis/carta-backend.git", tag: "v2.0.0-beta.0"
+  url "https://github.com/CARTAvis/carta-backend.git", tag: "v3.0.0-beta.1b"
   license "GPL-3.0-only"
-
-  bottle do
-    root_url "https://github.com/CARTAvis/homebrew-tap/releases/download/carta-beta-2.0.0-beta.0"
-    rebuild 1
-    sha256 cellar: :any, arm64_big_sur: "78e836fba8ed8e94e2105558f51e631bcb7e63379135bfc11f318a41a34cc69e"
-    sha256 cellar: :any, big_sur: "df1fca59c9840f521cdf51a11afc3bedd41ce50fd5b3b87c233a9a30c83d002b"
-    sha256 cellar: :any, catalina: "989c5c5d0a12f5ec7a016bc07bfc364bd77c6b7d80371c52c9de17a211c8f03b"
-    sha256 cellar: :any, mojave: "6e4c7978d59de85141da6b0469f558db46d3a657e9298c7ad0817bc6d8bc2377"
-    sha256 cellar: :any, high_sierra: "a91adf574df2fad98852c3758c17ce1dfc26557e6240bca3b16ba189bb2eb957"
-  end
 
   depends_on "cmake" => :build
   depends_on "boost" if MacOS.version <= :mojave
@@ -36,8 +26,8 @@ class CartaBeta < Formula
   end
 
   resource "frontend" do
-    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-2.0.0-beta.0.tgz"
-    sha256 "14d252e27eb2311fd44fbe17116eabe0faa37248ea5ba8e4c72183f882ff6d66"
+    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-3.0.0-beta.1b.tgz"
+    sha256 "a38b78ab759e4c5e6b78764dbc97d9e4298c2d6fa6453e6a4b984612762a3b07"
   end
 
   def install
@@ -50,6 +40,8 @@ class CartaBeta < Formula
       "-DCMAKE_INCLUDE_PATH=#{include}",
       "-DCMAKE_CXX_FLAGS=-I#{path}/casacode -I#{path}/casacore",
       "-DCMAKE_CXX_STANDARD_LIBRARIES=-L#{lib}",
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+      "-DCartaUserFolderPrefix=.carta-beta"
     ]
     args << "-DUseBoostFilesystem=True" if MacOS.version <= :mojave
     mkdir "build-backend" do
@@ -75,6 +67,6 @@ class CartaBeta < Formula
   end    
 
   test do
-    assert_match "2.0.0-beta.0", shell_output("#{bin}/carta_backend --version")
+    assert_match "3.0.0-beta.1b", shell_output("#{bin}/carta_backend --version")
   end
 end
