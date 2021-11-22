@@ -4,14 +4,6 @@ class Carta < Formula
   url "https://github.com/CARTAvis/carta-backend.git", tag: "v2.0.0"
   license "GPL-3.0-only"
 
-  bottle do
-    root_url "https://github.com/CARTAvis/homebrew-tap/releases/download/carta-2.0.0"
-    rebuild 1
-    sha256 cellar: :any, arm64_big_sur: "b5be18035c2a223ff4c91d6fedf9cd8d444b020db878f46173d27a2b0f585355"
-    sha256 cellar: :any, big_sur: "2decb9370c5d386f3b0a8ed86f82957e29918f55a6b0d1d3b43ca155d23bdeca"
-    sha256 cellar: :any, catalina: "b935c61bdd27d64d249beb1f5b5639e7724578490bcbffb342a06641f9165ed2"
-  end
-
   depends_on "cmake" => :build
   depends_on "boost" if MacOS.version <= :mojave
   depends_on "cartavis/tap/carta-casacore"
