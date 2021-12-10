@@ -19,8 +19,8 @@ class CartaBeta < Formula
   depends_on "zstd"
 
   resource "frontend" do
-    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-3.0.0-beta.2.tgz"
-    sha256 "046aebac34f3ec6b607d6304eb45a49a77a62cca17b351cc8c70f51de517d0e0"
+    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-3.0.0-beta.2b.tgz"
+    sha256 "860ce2436c11543e2dbbc049cb905d850e080cc8a266f3134810a413425bf971"
   end
 
   def install
