@@ -1,11 +1,10 @@
 class CartaBeta < Formula
   desc "Carta-backend and carta-frontend components of CARTA"
   homepage "https://cartavis.github.io/"
-  url "https://github.com/CARTAvis/carta-backend.git", tag: "v3.0.0-beta.1b"
+  url "https://github.com/CARTAvis/carta-backend.git", tag: "v3.0.0-beta.2b"
   license "GPL-3.0-only"
 
   depends_on "cmake" => :build
-  depends_on "boost" if MacOS.version <= :mojave
   depends_on "cartavis/tap/carta-casacore"
   depends_on "cartavis/tap/zfp"
   depends_on "curl"
@@ -18,16 +17,10 @@ class CartaBeta < Formula
   depends_on "pugixml"
   depends_on "wcslib"
   depends_on "zstd"
-  on_macos do
-    depends_on "tbb@2020"
-  end
-  on_linux do
-    depends_on "tbb"
-  end
 
   resource "frontend" do
-    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-3.0.0-beta.1b.tgz"
-    sha256 "a38b78ab759e4c5e6b78764dbc97d9e4298c2d6fa6453e6a4b984612762a3b07"
+    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-3.0.0-beta.2.tgz"
+    sha256 "046aebac34f3ec6b607d6304eb45a49a77a62cca17b351cc8c70f51de517d0e0"
   end
 
   def install
@@ -43,7 +36,6 @@ class CartaBeta < Formula
       "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
       "-DCartaUserFolderPrefix=.carta-beta"
     ]
-    args << "-DUseBoostFilesystem=True" if MacOS.version <= :mojave
     mkdir "build-backend" do
       system "cmake", "..", *args, *std_cmake_args
       system "make", "install"
@@ -58,15 +50,15 @@ class CartaBeta < Formula
   def caveats
     if MacOS.version <= :mojave
       s = <<~EOS     
-      CARTA officially supports the latest two MacOS versions; Catalina 10.15 and Big Sur 11.0.
+      CARTA officially supports the latest three MacOS versions; Catalina 10.15, Big Sur 11, and Monterey 12.
       You are running MacOS #{MacOS.version}.
-      CARTA may still work on MacOS #{MacOS.version}, but it is untested by the CARTA team.
+      CARTA will not work on MacOS #{MacOS.version} because Boost Filesystem support was removed.
       EOS
       s
     end
   end    
 
   test do
-    assert_match "3.0.0-beta.1b", shell_output("#{bin}/carta_backend --version")
+    assert_match "3.0.0-beta.2b", shell_output("#{bin}/carta_backend --version")
   end
 end
