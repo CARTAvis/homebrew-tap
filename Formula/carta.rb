@@ -25,7 +25,7 @@ class Carta < Formula
     depends_on "tbb"
   end
 
-  conflicts_with "carta-beta", because: => "they both share the same executable name; 'carta'"
+  conflicts_with "carta-beta", because: "they both share the same executable name; 'carta'"
 
   resource "frontend" do
     url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-2.0.0.tgz"
