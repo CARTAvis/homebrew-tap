@@ -18,6 +18,8 @@ class CartaBeta < Formula
   depends_on "wcslib"
   depends_on "zstd"
 
+  conflicts_with "carta", because: "they both share the same executable name; 'carta'"
+
   resource "frontend" do
     url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-3.0.0-beta.2b.tgz"
     sha256 "860ce2436c11543e2dbbc049cb905d850e080cc8a266f3134810a413425bf971"
