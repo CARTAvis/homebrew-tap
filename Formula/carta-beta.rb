@@ -1,5 +1,5 @@
 class CartaBeta < Formula
-  desc "carta-backend-beta and carta-frontend-beta components of CARTA"
+  desc "Carta-backend-beta and carta-frontend-beta components of CARTA"
   homepage "https://cartavis.github.io/"
   url "https://github.com/CARTAvis/carta-backend.git", tag: "v3.0.0-beta.2b"
   license "GPL-3.0-only"
@@ -49,7 +49,7 @@ class CartaBeta < Formula
 
   def caveats
     s = <<~EOS
-    CARTA officially supports the latest three MacOS versions; Catalina 10.15, Big Sur 11, and Monterey 12.
+      CARTA officially supports the latest three MacOS versions; Catalina 10.15, Big Sur 11, and Monterey 12.
     EOS
     if MacOS.version <= :mojave
       s = <<~EOS
