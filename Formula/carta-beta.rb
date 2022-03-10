@@ -1,5 +1,5 @@
 class CartaBeta < Formula
-  desc "Carta-backend and carta-frontend components of CARTA"
+  desc "The carta-backend-beta and carta-frontend-beta components of CARTA"
   homepage "https://cartavis.github.io/"
   url "https://github.com/CARTAvis/carta-backend.git", tag: "v3.0.0-beta.2b"
   license "GPL-3.0-only"
@@ -34,7 +34,7 @@ class CartaBeta < Formula
       "-DCMAKE_CXX_FLAGS=-I#{path}/casacode -I#{path}/casacore",
       "-DCMAKE_CXX_STANDARD_LIBRARIES=-L#{lib}",
       "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-      "-DCartaUserFolderPrefix=.carta-beta"
+      "-DCartaUserFolderPrefix=.carta-beta",
     ]
     mkdir "build-backend" do
       system "cmake", "..", *args, *std_cmake_args
@@ -49,14 +49,14 @@ class CartaBeta < Formula
 
   def caveats
     if MacOS.version <= :mojave
-      s = <<~EOS     
-      CARTA officially supports the latest three MacOS versions; Catalina 10.15, Big Sur 11, and Monterey 12.
-      You are running MacOS #{MacOS.version}.
-      CARTA will not work on MacOS #{MacOS.version} because Boost Filesystem support was removed.
+      s = <<~EOS
+        CARTA officially supports the latest three MacOS versions; Catalina 10.15, Big Sur 11, and Monterey 12.
+        You are running MacOS #{MacOS.version}.
+        CARTA will not work on MacOS #{MacOS.version} because Boost Filesystem support was removed.
       EOS
       s
     end
-  end    
+  end
 
   test do
     assert_match "3.0.0-beta.2b", shell_output("#{bin}/carta_backend --version")
