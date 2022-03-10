@@ -1,5 +1,5 @@
 class Carta < Formula
-  desc "backend and frontend components of CARTA"
+  desc "Backend and frontend components of CARTA"
   homepage "https://cartavis.github.io/"
   url "https://github.com/CARTAvis/carta-backend.git", tag: "v2.0.0"
   license "GPL-3.0-only"
