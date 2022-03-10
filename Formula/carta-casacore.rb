@@ -15,7 +15,7 @@ class CartaCasacore < Formula
   depends_on "wcslib"
 
   resource "casadata" do
-    url "http://alma.asiaa.sinica.edu.tw/_downloads/measures_data.tar.gz"
+    url "https://alma.asiaa.sinica.edu.tw/_downloads/measures_data.tar.gz"
     sha256 "8e9c0cba5beacaa36e752231318304791c3ff45d01159a4e3512285538bdcce8"
   end
 
