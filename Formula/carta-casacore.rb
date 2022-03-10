@@ -1,7 +1,7 @@
 class CartaCasacore < Formula
   desc "This is carta-casacore used by CARTA"
   homepage "https://github.com/CARTAvis/carta-casacore"
-  url "https://github.com/CARTAvis/carta-casacore.git", tag: "3.4.0+5.8.0+2021.2.4"
+  url "https://github.com/CARTAvis/carta-casacore.git", tag: "3.4.0+6.4.4+2022.3.9"
   license "GPL-2.0-only"
 
   depends_on "cmake" => :build
@@ -16,7 +16,7 @@ class CartaCasacore < Formula
 
   resource "casadata" do
     url "http://alma.asiaa.sinica.edu.tw/_downloads/measures_data.tar.gz"
-    sha256 "dbac1700fe6f35d26427238e9256c895eb9cbf3684ad9c6ebb70be1dd005bddc"
+    sha256 "8e9c0cba5beacaa36e752231318304791c3ff45d01159a4e3512285538bdcce8"
   end
 
   def install
@@ -53,8 +53,9 @@ class CartaCasacore < Formula
                             "-DBUILD_TESTING=OFF",
                             "-DBUILD_PYTHON=OFF",
                             "-DUseCcache=1",
+                            "-DDATA_DIR=/usr/local/share/casacore/data",
                             "-DHAS_CXX11=1", *std_cmake_args
-      system "make", "install"
+      system "make -j 4", "install"
     end
   end
 
