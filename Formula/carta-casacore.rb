@@ -55,7 +55,7 @@ class CartaCasacore < Formula
                             "-DUseCcache=1",
                             "-DDATA_DIR=/usr/local/share/casacore/data",
                             "-DHAS_CXX11=1", *std_cmake_args
-      system "make -j 4", "install"
+      system "make", "install"
     end
   end
 
