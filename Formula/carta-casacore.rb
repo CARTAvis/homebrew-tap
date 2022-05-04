@@ -1,7 +1,7 @@
 class CartaCasacore < Formula
   desc "This is carta-casacore used by CARTA"
   homepage "https://github.com/CARTAvis/carta-casacore"
-  url "https://github.com/CARTAvis/carta-casacore.git", tag: "3.4.0+6.5.0+2022.4.12"
+  url "https://github.com/CARTAvis/carta-casacore.git", tag: "3.4.0+6.5.0+2022.4.22"
   license "GPL-2.0-only"
 
   depends_on "cmake" => :build
@@ -9,7 +9,7 @@ class CartaCasacore < Formula
   depends_on "fftw"
   depends_on "gcc"
   depends_on "gsl"
-  depends_on "hdf5"
+  depends_on "hdf5@1.10"
   depends_on "lapack" # for linux
   depends_on "openblas" # for linux
   depends_on "wcslib"

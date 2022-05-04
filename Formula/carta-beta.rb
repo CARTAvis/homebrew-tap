@@ -10,6 +10,7 @@ class CartaBeta < Formula
   depends_on "curl"
   depends_on "fmt"
   depends_on "grpc"
+  depends_on "hdf5@1.10"  
   depends_on "libomp"
   depends_on "libuv"
   depends_on "pkg-config"
@@ -29,7 +30,7 @@ class CartaBeta < Formula
     # Building the carta-backend
     system "git", "submodule", "update", "--recursive", "--init"
     ENV["OPENSSL_ROOT_DIR"] = "$(brew --prefix openssl)"
-    path = HOMEBREW_PREFIX/"Cellar/carta-casacore/2022.3.9/include"
+    path = HOMEBREW_PREFIX/"Cellar/carta-casacore/2022.4.22/include"
     args = [
       "-DCMAKE_PREFIX_PATH=#{lib}",
       "-DCMAKE_INCLUDE_PATH=#{include}",
