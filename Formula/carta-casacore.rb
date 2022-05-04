@@ -20,17 +20,10 @@ class CartaCasacore < Formula
   end
 
   def install
-    # Problems with svn at the moment?!?
-    # mkdir_p "#{share}/casacore/data"
-    # system "svn co https://svn.cv.nrao.edu/svn/casa-data/distro/ephemerides/"
-    # system "svn co https://svn.cv.nrao.edu/svn/casa-data/distro/geodetic/"
-    # cp_r buildpath/"ephemerides", share/"casacore/data"
-    # cp_r buildpath/"geodetic", share/"casacore/data"
-    # So temporarily use a pre-prepared tar.gz
     resource("casadata").stage do
       mkdir_p "#{share}/casacore/data"
-      cp_r "ephemerides", share/"casacore/data"
-      cp_r "geodetic", share/"casacore/data"
+      cp_r "ephemerides", "#{share}/casacore/data"
+      cp_r "geodetic", "#{share}/casacore/data"
     end
 
     ENV["FCFLAGS"] = "-w -fallow-argument-mismatch -O2"
@@ -53,7 +46,7 @@ class CartaCasacore < Formula
                             "-DBUILD_TESTING=OFF",
                             "-DBUILD_PYTHON=OFF",
                             "-DUseCcache=1",
-                            "-DDATA_DIR=/usr/local/share/casacore/data",
+                            "-DDATA_DIR=#{share}/casacore/data",                            
                             "-DHAS_CXX11=1", *std_cmake_args
       system "make", "install"
     end
