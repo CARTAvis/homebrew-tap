@@ -1,7 +1,7 @@
 class CartaBeta < Formula
   desc "Carta-backend-beta and carta-frontend-beta components of CARTA"
   homepage "https://cartavis.github.io/"
-  url "https://github.com/CARTAvis/carta-backend.git", tag: "v3.0.0-beta.2b"
+  url "https://github.com/CARTAvis/carta-backend.git", tag: "v3.0.0-beta.3"
   license "GPL-3.0-only"
 
   depends_on "cmake" => :build
@@ -22,15 +22,15 @@ class CartaBeta < Formula
   conflicts_with "carta", because: "they both share the same executable name; 'carta'"
 
   resource "frontend" do
-    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-3.0.0-beta.2b.tgz"
-    sha256 "860ce2436c11543e2dbbc049cb905d850e080cc8a266f3134810a413425bf971"
+    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-3.0.0-beta.3.tgz"
+    sha256 "36414c50bb795689f7d828ffa28ef2034d9e33437ba916edb01e666a7c55b601"
   end
 
   def install
     # Building the carta-backend
     system "git", "submodule", "update", "--recursive", "--init"
     ENV["OPENSSL_ROOT_DIR"] = "$(brew --prefix openssl)"
-    path = HOMEBREW_PREFIX/"Cellar/carta-casacore/2022.4.22/include"
+    path = HOMEBREW_PREFIX/"Cellar/carta-casacore/2022.5.11/include"
     args = [
       "-DCMAKE_PREFIX_PATH=#{lib}",
       "-DCMAKE_INCLUDE_PATH=#{include}",
@@ -56,14 +56,14 @@ class CartaBeta < Formula
     EOS
     if MacOS.version <= :mojave
       s = <<~EOS
-        You are running MacOS #{MacOS.version}.
-        CARTA may still work on MacOS #{MacOS.version}, but it is untested by the CARTA team.
+        You are using MacOS #{MacOS.version}.
+        CARTA can not run on MacOS #{MacOS.version}.
       EOS
     end
     s
   end
 
   test do
-    assert_match "3.0.0-beta.2b", shell_output("#{bin}/carta_backend --version")
+    assert_match "3.0.0-beta.3", shell_output("#{bin}/carta_backend --version")
   end
 end
