@@ -1,6 +1,6 @@
 class Fits2idia < Formula
   desc "C++ implementation of FITS to IDIA-HDF5 converter, optimised using OpenMP"
-  homepage "https://github.com/idia-astro/fits2idia"
+  homepage "https://github.com/CARTAvis/fits2idia"
   url "https://github.com/CARTAvis/fits2idia/archive/refs/tags/v0.1.15.tar.gz"
   sha256 "58242127a0bdac631fb962d3fceeed905385e458f1997ba013f3d3aa907c4335"
   license "GPL-3.0-only"
