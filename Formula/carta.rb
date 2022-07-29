@@ -37,7 +37,7 @@ class Carta < Formula
     # Building the carta-backend
     system "git", "submodule", "update", "--recursive", "--init"
     ENV["OPENSSL_ROOT_DIR"] = "$(brew --prefix openssl)"
-    path = HOMEBREW_PREFIX/"Cellar/carta-casacore/2022.4.22/include"
+    path = HOMEBREW_PREFIX/"Cellar/carta-casacore/2022.5.11/include"
     args = [
       "-DCMAKE_PREFIX_PATH=#{lib}",
       "-DCMAKE_INCLUDE_PATH=#{include}",
