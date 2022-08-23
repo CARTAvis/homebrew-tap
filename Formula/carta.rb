@@ -21,7 +21,7 @@ class Carta < Formula
   conflicts_with "carta-beta", because: "they both share the same executable name; 'carta'"
 
   resource "frontend" do
-    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-2.0.0.tgz"
+    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-3.0.0.tgz"
     sha256 "56753940f0184cb66eb382032f8d82f425fc245e4b3656f5f38727582047e940"
   end
 
