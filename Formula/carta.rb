@@ -25,6 +25,13 @@ class Carta < Formula
     sha256 "56753940f0184cb66eb382032f8d82f425fc245e4b3656f5f38727582047e940"
   end
 
+  # Fix to support cfitsio 4.2.0+
+  # See https://github.com/CARTAvis/carta-backend/pull/1232
+  patch do
+    url "https://gist.githubusercontent.com/ajm-asiaa/18244b2740b0ca69f7bf0464aaa2e614/raw/429611c2d896b8845ecc4114431842e9428bdb75/0000-Use-nullptr-or-cfitsio-length-constant-for-fits_read.patch"
+    sha256 "ddabeff06afe62fd095a155f71f17ebd5303645d755fecc8afc8eaaca087b065"
+  end
+
   def install
     # Building the carta-backend
     system "git", "submodule", "update", "--recursive", "--init"
