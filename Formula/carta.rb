@@ -1,7 +1,7 @@
 class Carta < Formula
   desc "Backend and frontend components of CARTA"
   homepage "https://cartavis.github.io/"
-  url "https://github.com/CARTAvis/carta-backend.git", tag: "v3.0.0"
+  url "https://github.com/CARTAvis/carta-backend.git", tag: "v3.0.1"
   license "GPL-3.0-only"
 
   depends_on "cmake" => :build
@@ -68,6 +68,6 @@ class Carta < Formula
   end
 
   test do
-    assert_match "3.0.0", shell_output("#{bin}/carta_backend --version")
+    assert_match "3.0.1", shell_output("#{bin}/carta_backend --version")
   end
 end
