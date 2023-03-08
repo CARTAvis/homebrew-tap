@@ -41,7 +41,7 @@ class Carta < Formula
       "-DCMAKE_PREFIX_PATH=#{lib}",
       "-DCMAKE_INCLUDE_PATH=#{include}",
       "-DCMAKE_CXX_FLAGS=-I#{path}/casacode -I#{path}/casacore",
-      "-DCMAKE_CXX_STANDARD_LIBRARIES=-L#{lib}",
+      "-DCMAKE_CXX_STANDARD_LIBRARIES=-L#{HOMEBREW_PREFIX}/lib;-L#{lib}",      
       "-DCartaUserFolderPrefix=.carta",
     ]
     mkdir "build-backend" do
