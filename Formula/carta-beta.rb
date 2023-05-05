@@ -41,6 +41,15 @@ class CartaBeta < Formula
     mkdir "build-backend" do
       system "cmake", "..", *args, *std_cmake_args
       system "make", "install"
+    # Remove the rogue pugixml files
+    rm "#{prefix}/include/pugiconfig.hpp"
+    rm "#{prefix}/include/pugixml.hpp"
+    rm "#{lib}/cmake/pugixml/pugixml-config-version.cmake"
+    rm "#{lib}/cmake/pugixml/pugixml-config.cmake"
+    rm "#{lib}/cmake/pugixml/pugixml-targets-release.cmake"
+    rm "#{lib}/cmake/pugixml/pugixml-targets.cmake"
+    rm "#{lib}/libpugixml.a"
+    rm "#{lib}/pkgconfig/pugixml.pc"
     end
     # Grabing the pre-built carta-frontend from the npm repository.
     resource("frontend").stage do
