@@ -1,7 +1,7 @@
 class CartaBeta < Formula
   desc "Carta-backend-beta and carta-frontend-beta components of CARTA"
   homepage "https://cartavis.github.io/"
-  url "https://github.com/CARTAvis/carta-backend.git", tag: "v3.0.0-beta.3"
+  url "https://github.com/CARTAvis/carta-backend.git", tag: "v4.0.0-beta.1"
   license "GPL-3.0-only"
 
   depends_on "cmake" => :build
@@ -15,15 +15,14 @@ class CartaBeta < Formula
   depends_on "libuv"
   depends_on "pkg-config"
   depends_on "protobuf"
-  depends_on "pugixml"
   depends_on "wcslib"
   depends_on "zstd"
 
   conflicts_with "carta", because: "they both share the same executable name; 'carta'"
 
   resource "frontend" do
-    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-3.0.0-beta.3.tgz"
-    sha256 "36414c50bb795689f7d828ffa28ef2034d9e33437ba916edb01e666a7c55b601"
+    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-4.0.0-beta.1.tgz"
+    sha256 "54b6cff6c0b27e6838cbbb9eda327cb44ca40774461a57e507cd7bcbf8ce2dc8"
   end
 
   def install
@@ -52,7 +51,7 @@ class CartaBeta < Formula
 
   def caveats
     s = <<~EOS
-      CARTA officially supports the latest three MacOS versions; Catalina 10.15, Big Sur 11, and Monterey 12.
+      CARTA officially supports the latest three MacOS versions; Big Sur 11, Monterey 12, and Ventura 13.
     EOS
     if MacOS.version <= :mojave
       s = <<~EOS
@@ -64,6 +63,6 @@ class CartaBeta < Formula
   end
 
   test do
-    assert_match "3.0.0-beta.3", shell_output("#{bin}/carta_backend --version")
+    assert_match "4.0.0-beta.1", shell_output("#{bin}/carta_backend --version")
   end
 end
