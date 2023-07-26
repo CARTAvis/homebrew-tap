@@ -13,7 +13,7 @@ class Carta < Formula
   depends_on "libomp"
   depends_on "libuv"
   depends_on "pkg-config"
-  depends_on "protobuf"
+  depends_on "protobuf@21"
   depends_on "pugixml"
   depends_on "wcslib"
   depends_on "zstd"
