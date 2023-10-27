@@ -20,6 +20,11 @@ class CartaCasacore < Formula
   end
 
   def install
+
+    if MacOS.version == 14
+      odie ("Homebrew CARTA currently does not support macOS Sonoma. Please use the macOS Electron version of CARTA which is compatible with Sonoma.")
+    end
+
     resource("casadata").stage do
       mkdir_p "#{share}/casacore/data"
       cp_r "ephemerides", "#{share}/casacore/data"
