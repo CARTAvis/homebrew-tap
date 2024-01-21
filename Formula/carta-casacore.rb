@@ -1,7 +1,7 @@
-class CartaCasacore < Formula
+nginx -tclass CartaCasacore < Formula
   desc "This is carta-casacore used by CARTA"
   homepage "https://github.com/CARTAvis/carta-casacore"
-  url "https://github.com/CARTAvis/carta-casacore.git", tag: "3.4.0+6.5.0+2022.5.11"
+  url "https://github.com/CARTAvis/carta-casacore.git", tag: "3.5.0+6.6.0+2024.1.18"
   license "GPL-2.0-only"
 
   depends_on "cmake" => :build
@@ -15,15 +15,11 @@ class CartaCasacore < Formula
   depends_on "wcslib"
 
   resource "casadata" do
-    url "https://alma.asiaa.sinica.edu.tw/_downloads/measures_data.tar.gz"
-    sha256 "8e9c0cba5beacaa36e752231318304791c3ff45d01159a4e3512285538bdcce8"
+    url "https://carta.asiaa.sinica.edu.tw/_downloads/measures_data_21_1_2024.tgz"
+    sha256 "2e7977836b735f5201915311c5c384272270ecbc4d86604f79f73a8e15cdc220"
   end
 
   def install
-
-    if MacOS.version == 14
-      odie ("Homebrew CARTA currently does not support macOS Sonoma. Please use the macOS Electron version of CARTA which is compatible with Sonoma.")
-    end
 
     resource("casadata").stage do
       mkdir_p "#{share}/casacore/data"

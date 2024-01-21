@@ -1,7 +1,7 @@
 class Carta < Formula
   desc "Backend and frontend components of CARTA"
   homepage "https://cartavis.github.io/"
-  url "https://github.com/CARTAvis/carta-backend.git", tag: "v4.0.0"
+  url "https://github.com/CARTAvis/carta-backend.git", tag: "v4.1.0"
   license "GPL-3.0-only"
 
   depends_on "cmake" => :build
@@ -20,20 +20,16 @@ class Carta < Formula
   conflicts_with "carta-beta", because: "they both share the same executable name; 'carta'"
 
   resource "frontend" do
-    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-4.0.0.tgz"
-    sha256 "9dcf21bdc030d7779e9e8c7db7a4b8e8222336466368d559055b5187f1190183"
+    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-4.1.0.tgz"
+    sha256 "6bf5588b8014445167148f9da05b2b284e56ffef37d521a22f2397a6042a242d"
   end
 
   def install
 
-    if MacOS.version == 14
-      odie ("Homebrew CARTA currently does not support macOS Sonoma. Please use the macOS Electron version of CARTA which is compatible with Sonoma.")
-    end
-
     # Building the carta-backend
     system "git", "submodule", "update", "--recursive", "--init"
     ENV["OPENSSL_ROOT_DIR"] = "$(brew --prefix openssl)"
-    path = HOMEBREW_PREFIX/"Cellar/carta-casacore/2022.5.11/include"
+    path = HOMEBREW_PREFIX/"Cellar/carta-casacore/2024.1.18/include"
     args = [
       "-DCMAKE_PREFIX_PATH=#{lib}",
       "-DCMAKE_INCLUDE_PATH=#{include}",
@@ -67,6 +63,6 @@ class Carta < Formula
   end
 
   test do
-    assert_match "4.0.0", shell_output("#{bin}/carta_backend --version")
+    assert_match "4.1.0", shell_output("#{bin}/carta_backend --version")
   end
 end
