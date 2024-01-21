@@ -1,4 +1,4 @@
-nginx -tclass CartaCasacore < Formula
+class CartaCasacore < Formula
   desc "This is carta-casacore used by CARTA"
   homepage "https://github.com/CARTAvis/carta-casacore"
   url "https://github.com/CARTAvis/carta-casacore.git", tag: "3.5.0+6.6.0+2024.1.18"
