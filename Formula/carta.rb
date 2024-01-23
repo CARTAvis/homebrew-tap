@@ -1,68 +1,45 @@
-class Carta < Formula
-  desc "Backend and frontend components of CARTA"
-  homepage "https://cartavis.github.io/"
-  url "https://github.com/CARTAvis/carta-backend.git", tag: "v4.1.0"
-  license "GPL-3.0-only"
-
-  depends_on "cmake" => :build
-  depends_on "cartavis/tap/carta-casacore"
-  depends_on "cartavis/tap/zfp"
-  depends_on "curl"
-  depends_on "fmt"
-  depends_on "hdf5@1.10"  
-  depends_on "libomp"
-  depends_on "libuv"
-  depends_on "pkg-config"
-  depends_on "protobuf@21"
-  depends_on "wcslib"
-  depends_on "zstd"
-
-  conflicts_with "carta-beta", because: "they both share the same executable name; 'carta'"
-
-  resource "frontend" do
-    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-4.1.0.tgz"
-    sha256 "6bf5588b8014445167148f9da05b2b284e56ffef37d521a22f2397a6042a242d"
+cask 'carta' do
+  if Hardware::CPU.arm?
+    # Native Apple Silicon version
+    version '4.1.0'
+    sha256 '4adc6a7429de51fcf55befb27166c4543353ef230a51cc4c37aab290fa51b572'
+    url 'https://github.com/CARTAvis/carta/releases/download/v4.1.0/CARTA-v4.1.0-arm64.dmg'
+  else
+    # Native Intel version
+    version '4.1.0'
+    sha256 '6ef4c59053687f64010a581302ae4cde5a31992251a6824083533e726e761147'
+    url 'https://github.com/CARTAvis/carta/releases/download/v4.1.0/CARTA-v4.1.0-x64.dmg'
   end
 
-  def install
+  name 'CARTA'
+  desc 'Electron version of CARTA provided as a Homebrew Cask'
+  homepage 'https://cartavis.org'
 
-    # Building the carta-backend
-    system "git", "submodule", "update", "--recursive", "--init"
-    ENV["OPENSSL_ROOT_DIR"] = "$(brew --prefix openssl)"
-    path = HOMEBREW_PREFIX/"Cellar/carta-casacore/2024.1.18/include"
-    args = [
-      "-DCMAKE_PREFIX_PATH=#{lib}",
-      "-DCMAKE_INCLUDE_PATH=#{include}",
-      "-DCMAKE_CXX_FLAGS=-I#{path}/casacode -I#{path}/casacore",
-      "-DCMAKE_CXX_STANDARD_LIBRARIES=-L#{HOMEBREW_PREFIX}/lib;-L#{lib}",
-      "-DCARTA_CASACORE_ROOT=#{HOMEBREW_PREFIX}/Cellar/carta-casacore",
-      "-DCartaUserFolderPrefix=.carta",
-      "-DDEPLOYMENT_TYPE=homebrew",
-    ]
-    mkdir "build-backend" do
-      system "cmake", "..", *args, *std_cmake_args
-      system "make", "install"
-    end
-    # Grabing the pre-built carta-frontend from the npm repository.
-    resource("frontend").stage do
-      mkdir_p "#{share}/carta/frontend"
-      cp_r "build/.", share/"carta/frontend"
-    end
+  if Hardware::CPU.arm?
+    app 'CARTA.app' , target: '/opt/homebrew/Caskroom/CARTA.app'
+  else
+    app 'CARTA.app' , target: '/usr/local/Caskroom/CARTA.app'
   end
 
-  def caveats
-    s = <<~EOS
-      CARTA officially supports the latest three MacOS versions; Big Sur 11, Monterey 12, and Ventura 13.
+  postflight do
+    # Setup a 'carta' executable to the 'carta.sh' script.
+    # The 'carta.sh' bypasses the Electron component so that the user's default web browser is used to display the carta-frontend.
+    bin_dir = Hardware::CPU.arm? ? '/opt/homebrew/bin' : '/usr/local/bin'
+    bin_path = "#{bin_dir}/carta"
+    carta_dir = Hardware::CPU.arm? ? '/opt/homebrew/Caskroom' : '/usr/local/Caskroom'
+
+    File.write(bin_path, <<~EOS)
+      #!/bin/bash
+      #{carta_dir}/CARTA.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
     EOS
-    if MacOS.version <= :mojave
-      s = <<~EOS
-        You are running MacOS #{MacOS.version}. CARTA can not run on MacOS #{MacOS.version}.
-      EOS
-    end
-    s
+    system_command '/bin/chmod', args: ['755', bin_path]
   end
 
-  test do
-    assert_match "4.1.0", shell_output("#{bin}/carta_backend --version")
+  uninstall_postflight do
+    # Remove the custom 'carta' executable on uninstall
+    bin_dir = Hardware::CPU.arm? ? '/opt/homebrew/bin' : '/usr/local/bin'
+    bin_path = "#{bin_dir}/carta"
+    system_command '/bin/rm', args: [bin_path]
   end
+
 end
