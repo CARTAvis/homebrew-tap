@@ -11,6 +11,7 @@ class CartaCasacore < Formula
   depends_on "gsl"
   depends_on "hdf5@1.10"
   depends_on "lapack" # for linux
+  depends_on "libomp"
   depends_on "openblas" # for linux
   depends_on "wcslib"
 
@@ -30,6 +31,9 @@ class CartaCasacore < Formula
     ENV["FCFLAGS"] = "-w -fallow-argument-mismatch -O2"
     ENV["FFLAGS"] = "-w -fallow-argument-mismatch -O2"
 
+    ENV["LDFLAGS"] = "-L#{Formula["libomp"].opt_lib} -lomp"
+    ENV["CXXFLAGS"] = "-I#{Formula["libomp"].opt_include}"
+
     system "git", "submodule", "init"
     system "git", "submodule", "update"
 
@@ -47,7 +51,9 @@ class CartaCasacore < Formula
                             "-DBUILD_TESTING=OFF",
                             "-DBUILD_PYTHON=OFF",
                             "-DUseCcache=1",
-                            "-DDATA_DIR=#{share}/casacore/data",                            
+                            "-DDATA_DIR=#{share}/casacore/data",
+                            "-DHDF5_d_classic_LIBRARY_DEBUG=''",
+                            "-DHDF5_d_classic_LIBRARY_RELEASE=''",
                             "-DHAS_CXX11=1", *std_cmake_args
       system "make", "install"
     end
