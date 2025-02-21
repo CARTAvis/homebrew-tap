@@ -16,9 +16,9 @@ cask 'carta-beta' do
     homepage 'https://cartavis.org'
   
     if Hardware::CPU.arm?
-      app 'CARTA-beta.app' , target: '/opt/homebrew/Caskroom/CARTA-beta.app'
+      app 'CARTA-v5.0.0-beta.1.app' , target: '/opt/homebrew/Caskroom/CARTA-v5.0.0-beta.1.app'
     else
-      app 'CARTA-beta.app' , target: '/usr/local/Caskroom/CARTA-beta.app'
+      app 'CARTA-v5.0.0-beta.1.app' , target: '/usr/local/Caskroom/CARTA-v5.0.0-beta.1.app'
     end
   
     postflight do
@@ -30,7 +30,7 @@ cask 'carta-beta' do
   
       File.write(bin_path, <<~EOS)
         #!/bin/bash
-        #{carta_dir}/CARTA-beta.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
+        #{carta_dir}/CARTA-v5.0.0-beta.1.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
       EOS
       system_command '/bin/chmod', args: ['755', bin_path]
     end
