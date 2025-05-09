@@ -15,22 +15,17 @@ cask 'carta-beta' do
   desc 'Electron version of CARTA provided as a Homebrew Cask'
   homepage 'https://cartavis.org'
 
-  if Hardware::CPU.arm?
-    app 'CARTA-v5.0.0-beta.1.app' , target: '/opt/homebrew/Caskroom/CARTA-v5.0.0-beta.1.app'
-  else
-    app 'CARTA-v5.0.0-beta.1.app' , target: '/usr/local/Caskroom/CARTA-v5.0.0-beta.1.app'
-  end
+  app "CARTA-v#{version}.app"
 
   postflight do
     # Setup a 'carta' executable to the 'carta.sh' script.
     # The 'carta.sh' bypasses the Electron component so that the user's default web browser is used to display the carta-frontend.
     bin_dir = Hardware::CPU.arm? ? '/opt/homebrew/bin' : '/usr/local/bin'
     bin_path = "#{bin_dir}/carta-beta"
-    carta_dir = Hardware::CPU.arm? ? '/opt/homebrew/Caskroom' : '/usr/local/Caskroom'
 
     File.write(bin_path, <<~EOS)
       #!/bin/bash
-      #{carta_dir}/CARTA-v5.0.0-beta.1.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
+      #{appdir}/CARTA-v#{version}.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
     EOS
     system_command '/bin/chmod', args: ['755', bin_path]
   end
