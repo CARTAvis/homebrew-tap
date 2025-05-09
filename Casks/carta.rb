@@ -1,15 +1,11 @@
 cask 'carta' do
-  if Hardware::CPU.arm?
-    # Native Apple Silicon version
-    version '4.1.0'
-    sha256 '4adc6a7429de51fcf55befb27166c4543353ef230a51cc4c37aab290fa51b572'
-    url 'https://github.com/CARTAvis/carta/releases/download/v4.1.0/CARTA-v4.1.0-arm64.dmg'
-  else
-    # Native Intel version
-    version '4.1.0'
-    sha256 '6ef4c59053687f64010a581302ae4cde5a31992251a6824083533e726e761147'
-    url 'https://github.com/CARTAvis/carta/releases/download/v4.1.0/CARTA-v4.1.0-x64.dmg'
-  end
+  arch arm: "arm64", intel: "x64"
+
+  version "4.1.0"
+  sha256 arm:   "4adc6a7429de51fcf55befb27166c4543353ef230a51cc4c37aab290fa51b572",
+         intel: "6ef4c59053687f64010a581302ae4cde5a31992251a6824083533e726e761147"
+  url "https://github.com/CARTAvis/carta/releases/download/v#{version}/CARTA-v#{version}-#{arch}.dmg",
+      verified: "github.com/CARTAvis/carta/releases/download"
 
   name 'CARTA'
   desc 'Electron version of CARTA provided as a Homebrew Cask'
@@ -36,5 +32,4 @@ cask 'carta' do
     bin_path = "#{bin_dir}/carta"
     system_command '/bin/rm', args: [bin_path]
   end
-
 end
