@@ -30,7 +30,7 @@ cask 'carta' do
 
     File.write(bin_path, <<~EOS)
       #!/bin/bash
-      #{carta_dir}/CARTA-v5.0.0.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
+      #{carta_dir}/CARTA.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
     EOS
     system_command '/bin/chmod', args: ['755', bin_path]
   end
