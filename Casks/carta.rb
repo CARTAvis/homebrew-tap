@@ -1,14 +1,14 @@
 cask 'carta' do
   if Hardware::CPU.arm?
     # Native Apple Silicon version
-    version '4.1.0'
-    sha256 '4adc6a7429de51fcf55befb27166c4543353ef230a51cc4c37aab290fa51b572'
-    url 'https://github.com/CARTAvis/carta/releases/download/v4.1.0/CARTA-v4.1.0-arm64.dmg'
+    version '5.0.0'
+    sha256 'f81c72280c12a772999c3b45335bf32d83ff960168fa25f49aaf1b807ff9f28b'
+    url 'https://github.com/CARTAvis/carta/releases/download/v5.0.0/CARTA-v5.0.0-arm64.dmg'
   else
     # Native Intel version
-    version '4.1.0'
-    sha256 '6ef4c59053687f64010a581302ae4cde5a31992251a6824083533e726e761147'
-    url 'https://github.com/CARTAvis/carta/releases/download/v4.1.0/CARTA-v4.1.0-x64.dmg'
+    version '5.0.0'
+    sha256 'c3cf8786e8db8a9d9686ebce127be812c6fc188935508bd76cb9b50cc1b32cfc'
+    url 'https://github.com/CARTAvis/carta/releases/download/v5.0.0/CARTA-v5.0.0-x64.dmg'
   end
 
   name 'CARTA'
@@ -30,7 +30,7 @@ cask 'carta' do
 
     File.write(bin_path, <<~EOS)
       #!/bin/bash
-      #{carta_dir}/CARTA.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
+      #{carta_dir}/CARTA-v5.0.0.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
     EOS
     system_command '/bin/chmod', args: ['755', bin_path]
   end
