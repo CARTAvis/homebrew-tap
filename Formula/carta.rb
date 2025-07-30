@@ -3,12 +3,12 @@ cask 'carta' do
     # Native Apple Silicon version
     version '5.0.0'
     sha256 'f81c72280c12a772999c3b45335bf32d83ff960168fa25f49aaf1b807ff9f28b'
-    url 'https://github.com/CARTAvis/carta/releases/download/v5.0.0/CARTA-v5.0.0-arm64.dmg'
+    url 'https://github.com/CARTAvis/carta/releases/download/v5.0.0/CARTA-arm64.dmg'
   else
     # Native Intel version
     version '5.0.0'
     sha256 'c3cf8786e8db8a9d9686ebce127be812c6fc188935508bd76cb9b50cc1b32cfc'
-    url 'https://github.com/CARTAvis/carta/releases/download/v5.0.0/CARTA-v5.0.0-x64.dmg'
+    url 'https://github.com/CARTAvis/carta/releases/download/v5.0.0/CARTA-x64.dmg'
   end
 
   name 'CARTA'
