@@ -1,14 +1,14 @@
 cask 'carta' do
   if Hardware::CPU.arm?
     # Native Apple Silicon version
-    version '5.0.0'
-    sha256 'f81c72280c12a772999c3b45335bf32d83ff960168fa25f49aaf1b807ff9f28b'
-    url 'https://github.com/CARTAvis/carta/releases/download/v5.0.0/CARTA-arm64.dmg'
+    version '5.0.3'
+    sha256 'e88b21a9ce9c39111eb1ab2934357f03c4651f78f5107f5a0549f15c817b3e58'
+    url 'https://github.com/CARTAvis/carta/releases/download/v5.0.3/CARTA-arm64.dmg'
   else
     # Native Intel version
-    version '5.0.0'
-    sha256 'c3cf8786e8db8a9d9686ebce127be812c6fc188935508bd76cb9b50cc1b32cfc'
-    url 'https://github.com/CARTAvis/carta/releases/download/v5.0.0/CARTA-x64.dmg'
+    version '5.0.3'
+    sha256 'd9a9375b38d10a648c0a16a5025e4aab6d0d6348f284c13a1d91a3a5046f0cc7'
+    url 'https://github.com/CARTAvis/carta/releases/download/v5.0.3/CARTA-x64.dmg'
   end
 
   name 'CARTA'
