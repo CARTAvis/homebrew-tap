@@ -28,9 +28,14 @@ cask "carta-beta" do
         # Setup a "carta" executable to the "carta.sh" script.
         # The "carta.sh" bypasses the Electron component so that the user's
         # default web browser is used to display the carta-frontend.
-        bin_dir = on_arch_conditional arm: "/opt/homebrew/bin", intel: "/usr/local/bin"
+        
+        bin_dir = "/opt/homebrew/bin" if Hardware::CPU.arm?
+        bin_dir = "/usr/local/bin" if Hardware::CPU.intel?
+
+        carta_dir = "/opt/homebrew/Caskroom" if Hardware::CPU.arm?
+        carta_dir = "/usr/local/Caskroom" if Hardware::CPU.intel?
+        
         bin_path = "#{bin_dir}/carta-beta"
-        carta_dir = on_arch_conditional arm: "/opt/homebrew/Caskroom", intel: "/usr/local/Caskroom"
 
         File.write(bin_path, <<~EOS)
           #!/bin/bash
@@ -41,7 +46,8 @@ cask "carta-beta" do
 
     uninstall_postflight do
         # Remove the custom "carta" executable on uninstall
-        bin_dir = on_arch_conditional arm: "/opt/homebrew/bin", intel: "/usr/local/bin"
+        bin_dir = "/opt/homebrew/bin" if Hardware::CPU.arm?
+        bin_dir = "/usr/local/bin" if Hardware::CPU.intel?
         bin_path = "#{bin_dir}/carta-beta"
         system_command "/bin/rm", args: [bin_path]
     end
