@@ -4,7 +4,8 @@ cask "carta" do
         # Native Apple Silicon version
         sha256 "4a5e8c301b81c2f30f81a779240721af1ac2398924dc59a018a1f786f660c4d8"
         url "https://github.com/CARTAvis/carta/releases/download/v5.1.0/CARTA-arm64.dmg"
-    else
+    end
+    on_intel do
         # Native Intel version
         sha256 "e143a3961546700c53aaaa5649971b5d4b884fb9359aea78efa2255c1a50d623"
         url "https://github.com/CARTAvis/carta/releases/download/v5.1.0/CARTA-x64.dmg"
@@ -15,9 +16,10 @@ cask "carta" do
     homepage "https://cartavis.org"
 
     on_arm do
-        app "CARTA.app" , target: "/opt/homebrew/Caskroom/CARTA.app"
-    else
-        app "CARTA.app" , target: "/usr/local/Caskroom/CARTA.app"
+        app "CARTA.app", target: "/opt/homebrew/Caskroom/CARTA.app"
+    end
+    on_intel do
+        app "CARTA.app", target: "/usr/local/Caskroom/CARTA.app"
     end
 
     postflight do
