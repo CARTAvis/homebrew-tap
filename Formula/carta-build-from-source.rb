@@ -9,7 +9,7 @@ class Carta < Formula
   depends_on "cartavis/tap/zfp"
   depends_on "curl"
   depends_on "fmt"
-  depends_on "hdf5@1.10"  
+  depends_on "hdf5@1.10"
   depends_on "libomp"
   depends_on "libuv"
   depends_on "pkg-config"
@@ -25,7 +25,6 @@ class Carta < Formula
   end
 
   def install
-
     # Building the carta-backend
     system "git", "submodule", "update", "--recursive", "--init"
     ENV["OPENSSL_ROOT_DIR"] = "$(brew --prefix openssl)"
@@ -51,15 +50,17 @@ class Carta < Formula
   end
 
   def caveats
-    s = <<~EOS
-      CARTA officially supports the latest three MacOS versions; Sonoma 14 and Sequoia 15.
-    EOS
-    if MacOS.version <= :mojave
+    on_macos do
       s = <<~EOS
-        You are running MacOS #{MacOS.version}. CARTA can not run on MacOS #{MacOS.version}.
+        CARTA officially supports the latest three MacOS versions; Sonoma 14 and Sequoia 15.
       EOS
+      if MacOS.version <= :sonoma
+        s = <<~EOS
+          CARTA might not be running on MacOS #{MacOS.version}.
+        EOS
+      end
+      s
     end
-    s
   end
 
   test do
