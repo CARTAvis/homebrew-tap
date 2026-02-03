@@ -1,7 +1,7 @@
 class Carta < Formula
   desc "Backend and frontend components of CARTA"
   homepage "https://cartavis.github.io/"
-  url "https://github.com/CARTAvis/carta-backend.git", tag: "v4.1.0"
+  url "https://github.com/CARTAvis/carta-backend.git", tag: "v5.1.0"
   license "GPL-3.0-only"
 
   depends_on "cmake" => :build
@@ -20,8 +20,8 @@ class Carta < Formula
   conflicts_with "carta-beta", because: "they both share the same executable name; 'carta'"
 
   resource "frontend" do
-    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-4.1.0.tgz"
-    sha256 "6bf5588b8014445167148f9da05b2b284e56ffef37d521a22f2397a6042a242d"
+    url "https://registry.npmjs.org/carta-frontend/-/carta-frontend-5.1.0.tgz"
+    sha256 "7c6ddd5ede604f7bc9d9f696f6ec0222837747ffdf79954f9cc4f622a116d079"
   end
 
   def install
@@ -52,7 +52,7 @@ class Carta < Formula
 
   def caveats
     s = <<~EOS
-      CARTA officially supports the latest three MacOS versions; Big Sur 11, Monterey 12, and Ventura 13.
+      CARTA officially supports the latest three MacOS versions; Sonoma 14 and Sequoia 15.
     EOS
     if MacOS.version <= :mojave
       s = <<~EOS
@@ -63,6 +63,6 @@ class Carta < Formula
   end
 
   test do
-    assert_match "4.1.0", shell_output("#{bin}/carta_backend --version")
+    assert_match "5.1.0", shell_output("#{bin}/carta_backend --version")
   end
 end

@@ -1,14 +1,14 @@
 cask 'carta-beta' do
     if Hardware::CPU.arm?
       # Native Apple Silicon version
-      version '5.0.0-beta.1'
-      sha256 '237bc0a47258cd6b39609c503078cd069ec7a22b0a43763c445c9560de3d4782'
-      url 'https://github.com/CARTAvis/carta/releases/download/v5.0.0-beta.1/CARTA-v5.0.0-beta.1-arm64_OS15.4.dmg'
+    version '5.1.0'
+    sha256 '4a5e8c301b81c2f30f81a779240721af1ac2398924dc59a018a1f786f660c4d8'
+    url 'https://github.com/CARTAvis/carta/releases/download/v5.1.0/CARTA-arm64.dmg'
     else
       # Native Intel version
-      version '5.0.0-beta.1'
-      sha256 '3976c716b879df4524e694458a9314cd606a35ac28a5ab0ea78d475590222802'
-      url 'https://github.com/CARTAvis/carta/releases/download/v5.0.0-beta.1/CARTA-v5.0.0-beta.1-x64.dmg'
+    version '5.1.0'
+    sha256 'e143a3961546700c53aaaa5649971b5d4b884fb9359aea78efa2255c1a50d623'
+    url 'https://github.com/CARTAvis/carta/releases/download/v5.1.0/CARTA-x64.dmg'
     end
   
     name 'CARTA'
@@ -16,9 +16,9 @@ cask 'carta-beta' do
     homepage 'https://cartavis.org'
   
     if Hardware::CPU.arm?
-      app 'CARTA-v5.0.0-beta.1.app' , target: '/opt/homebrew/Caskroom/CARTA-v5.0.0-beta.1.app'
+      app 'CARTA-beta.app' , target: '/opt/homebrew/Caskroom/CARTA-beta.app'
     else
-      app 'CARTA-v5.0.0-beta.1.app' , target: '/usr/local/Caskroom/CARTA-v5.0.0-beta.1.app'
+      app 'CARTA-beta.app' , target: '/usr/local/Caskroom/CARTA-beta.app'
     end
   
     postflight do
@@ -30,7 +30,7 @@ cask 'carta-beta' do
   
       File.write(bin_path, <<~EOS)
         #!/bin/bash
-        #{carta_dir}/CARTA-v5.0.0-beta.1.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
+        #{carta_dir}/CARTA-beta.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
       EOS
       system_command '/bin/chmod', args: ['755', bin_path]
     end
