@@ -6,18 +6,16 @@ cask "carta-beta" do
         sha256 "4a5e8c301b81c2f30f81a779240721af1ac2398924dc59a018a1f786f660c4d8"
 
         url "https://github.com/CARTAvis/carta/releases/download/v5.1.0/CARTA-arm64.dmg"
-    end
-    on_arm do
-        app "CARTA-beta.app", target: "/opt/homebrew/Caskroom/CARTA-beta.app"
+
+        app "CARTA.app", target: "/opt/homebrew/Caskroom/CARTA-beta.app"
     end
     on_intel do
         # Native Intel version
         sha256 "e143a3961546700c53aaaa5649971b5d4b884fb9359aea78efa2255c1a50d623"
 
         url "https://github.com/CARTAvis/carta/releases/download/v5.1.0/CARTA-x64.dmg"
-    end
-    on_intel do
-        app "CARTA-beta.app", target: "/usr/local/Caskroom/CARTA-beta.app"
+
+        app "CARTA.app", target: "/usr/local/Caskroom/CARTA-beta.app"
     end
 
     name "CARTA"
@@ -25,7 +23,7 @@ cask "carta-beta" do
     homepage "https://cartavis.org/"
 
     postflight do
-        # Setup a "carta" executable to the "carta.sh" script.
+        # Setup a "carta-beta" executable to the "carta.sh" script.
         # The "carta.sh" bypasses the Electron component so that the user's
         # default web browser is used to display the carta-frontend.
 
@@ -45,7 +43,7 @@ cask "carta-beta" do
     end
 
     uninstall_postflight do
-        # Remove the custom "carta" executable on uninstall
+        # Remove the custom "carta-beta" executable on uninstall
         bin_dir = "/opt/homebrew/bin" if Hardware::CPU.arm?
         bin_dir = "/usr/local/bin" if Hardware::CPU.intel?
         bin_path = "#{bin_dir}/carta-beta"
