@@ -1,8 +1,8 @@
 class CartaCasacore < Formula
   desc "This is carta-casacore used by CARTA"
   homepage "https://github.com/CARTAvis/carta-casacore"
-  url "https://github.com/CARTAvis/carta-casacore.git", tag: "3.5.0+6.6.0+2024.1.18"
-  license "GPL-2.0-only"
+  url "https://github.com/CARTAvis/carta-casacore.git", tag: "3.8.0+6.7.5+2026.3.3"
+  license "GPL-3+"
 
   depends_on "cmake" => :build
   depends_on "cfitsio"
@@ -15,8 +15,8 @@ class CartaCasacore < Formula
   depends_on "wcslib"
 
   resource "casadata" do
-    url "https://carta.asiaa.sinica.edu.tw/_downloads/measures_data_21_1_2024.tgz"
-    sha256 "2e7977836b735f5201915311c5c384272270ecbc4d86604f79f73a8e15cdc220"
+    url "https://carta.asiaa.sinica.edu.tw/_downloads/measures_data_13_3_2026.tgz"
+    sha256 "36511ca719ed728bbffeb067f065e490b0951b34eed47bbd38a019708781406d"
   end
 
   def install
@@ -39,11 +39,7 @@ class CartaCasacore < Formula
     end
 
     mkdir "build" do
-      system "cmake", "..", "-DUSE_FFTW3=ON",
-                            "-DUSE_HDF5=ON",
-                            "-DUSE_THREADS=ON",
-                            "-DUSE_OPENMP=ON",
-                            "-DCMAKE_BUILD_TYPE=Release",
+      system "cmake", "..", "-DCMAKE_BUILD_TYPE=Release",
                             "-DBUILD_TESTING=OFF",
                             "-DBUILD_PYTHON=OFF",
                             "-DUseCcache=1",
