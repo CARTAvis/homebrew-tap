@@ -1,21 +1,21 @@
 cask "carta-beta" do
-    version "5.1.0"
+    version "v6.0.0-beta.1"
 
     on_arm do
         # Native Apple Silicon version
-        sha256 "4a5e8c301b81c2f30f81a779240721af1ac2398924dc59a018a1f786f660c4d8"
+        sha256 "a6b332ff80110730ca92bbe9722d41fe9cbd6d12a6ad9f1e01cdf0dbc0df2b21"
 
-        url "https://github.com/CARTAvis/carta/releases/download/v5.1.0/CARTA-arm64.dmg"
+        url "https://github.com/CARTAvis/carta/releases/download/v6.0.0-beta.1/CARTA-v6.0.0-beta.1-arm64.dmg"
 
-        app "CARTA.app", target: "/opt/homebrew/Caskroom/CARTA-beta.app"
+        app "CARTA-v6.0.0-beta.1.app", target: "/opt/homebrew/Caskroom/CARTA-v6.0.0-beta.1.app"
     end
     on_intel do
         # Native Intel version
-        sha256 "e143a3961546700c53aaaa5649971b5d4b884fb9359aea78efa2255c1a50d623"
+        sha256 "227b8e57882e43755b97290e2740689386543e925f1533715a9121024c14812a"
 
-        url "https://github.com/CARTAvis/carta/releases/download/v5.1.0/CARTA-x64.dmg"
+        url "https://github.com/CARTAvis/carta/releases/download/v6.0.0-beta.1/CARTA-v6.0.0-beta.1-x64.dmg"
 
-        app "CARTA.app", target: "/usr/local/Caskroom/CARTA-beta.app"
+        app "CARTA-v6.0.0-beta.1.app", target: "/opt/homebrew/Caskroom/CARTA-v6.0.0-beta.1.app"
     end
 
     name "CARTA"
@@ -23,7 +23,7 @@ cask "carta-beta" do
     homepage "https://cartavis.org/"
 
     postflight do
-        # Setup a "carta-beta" executable to the "carta.sh" script.
+        # Setup a "CARTA-v6.0.0-beta.1" executable to the "carta.sh" script.
         # The "carta.sh" bypasses the Electron component so that the user's
         # default web browser is used to display the carta-frontend.
 
@@ -37,13 +37,13 @@ cask "carta-beta" do
 
         File.write(bin_path, <<~EOS)
           #!/bin/bash
-          #{carta_dir}/CARTA-beta.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
+          #{carta_dir}/CARTA-v6.0.0-beta.1.app/Contents/Resources/app/carta-backend/bin/carta.sh "$@"
         EOS
         system_command "/bin/chmod", args: ["755", bin_path]
     end
 
     uninstall_postflight do
-        # Remove the custom "carta-beta" executable on uninstall
+        # Remove the custom "CARTA-v6.0.0-beta.1" executable on uninstall
         bin_dir = "/opt/homebrew/bin" if Hardware::CPU.arm?
         bin_dir = "/usr/local/bin" if Hardware::CPU.intel?
         bin_path = "#{bin_dir}/carta-beta"
